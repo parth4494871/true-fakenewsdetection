@@ -1,0 +1,5 @@
+{
+  "name": "TruthScan - AI Fake News Detection",
+  "description": "A high-precision fake news detection system using advanced AI classification models inspired by BERT architecture to verify the authenticity of news headlines and articles.",
+  "requestFramePermissions": []
+}
