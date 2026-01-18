@@ -4,13 +4,14 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   define: {
-    // Vite needs this to replace process.env.API_KEY in your code during build
+    // Replaces process.env.API_KEY with the actual key from your environment during build
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY || '')
   },
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'terser',
+    // Removed minify: 'terser' to fix the build error. 
+    // Vite now uses the built-in esbuild minifier.
     rollupOptions: {
       output: {
         manualChunks: {
