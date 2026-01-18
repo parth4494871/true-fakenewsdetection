@@ -17,7 +17,7 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ result }) => {
 
   return (
     <div className="mt-8 p-6 bg-[#161a20] rounded-xl border border-gray-800 shadow-2xl animate-fade-in transition-all">
-      <div className="flex flex-col md:flex-row gap-8 items-center">
+      <div className="flex flex-col md:flex-row gap-8 items-center border-b border-gray-800 pb-8 mb-6">
         <div className="w-full md:w-1/3 flex flex-col items-center">
           <div className="h-48 w-48 relative">
             <ResponsiveContainer width="100%" height="100%">
@@ -75,6 +75,35 @@ const ResultDisplay: React.FC<ResultDisplayProps> = ({ result }) => {
           </div>
         </div>
       </div>
+
+      {/* Grounding Sources Section */}
+      {result.sources && result.sources.length > 0 && (
+        <div className="animate-fade-in">
+          <h4 className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-3 flex items-center gap-2">
+            <i className="fa-solid fa-earth-americas text-blue-400"></i>
+            Live Search Verification Sources
+          </h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {result.sources.map((source, idx) => (
+              <a 
+                key={idx} 
+                href={source.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="p-3 bg-gray-800/40 border border-gray-700 rounded-lg hover:bg-gray-800 hover:border-blue-500/50 transition-all flex items-center justify-between group"
+              >
+                <div className="flex flex-col min-w-0 pr-2">
+                  <span className="text-sm text-gray-200 font-medium truncate group-hover:text-blue-400">
+                    {source.title}
+                  </span>
+                  <span className="text-[10px] text-gray-500 truncate">{source.url}</span>
+                </div>
+                <i className="fa-solid fa-arrow-up-right-from-square text-xs text-gray-600 group-hover:text-blue-400"></i>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
